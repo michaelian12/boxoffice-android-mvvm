@@ -1,51 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto">
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/sfl_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="@dimen/default_padding_margin"
-        shimmer:shimmer_duration="1200">
+    <data>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <import type="android.view.View" />
 
-            <include layout="@layout/movie_item_placeholder" />
-
-            <include layout="@layout/movie_item_placeholder" />
-
-            <include layout="@layout/movie_item_placeholder" />
-
-        </LinearLayout>
-
-    </com.facebook.shimmer.ShimmerFrameLayout>
-
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:id="@+id/rv_movie_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="@dimen/default_padding_margin"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+        <variable
+            name="viewModel"
+            type="com.michaelagustian.boxoffice.features.movie.MovieViewModel" />
+    </data>
 
     <RelativeLayout
-        android:id="@+id/rl_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/label_no_results" />
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/sfl_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/default_padding_margin"
+            android:visibility="@{safeUnbox(viewModel.loadingView) ? View.VISIBLE : View.GONE}"
+            shimmer:shimmer_duration="1200">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/movie_item_placeholder" />
+
+                <include layout="@layout/movie_item_placeholder" />
+
+                <include layout="@layout/movie_item_placeholder" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:id="@+id/rv_movie_list"
+            items="@{viewModel.items}"
+            loadMoreComplete="@{viewModel.loadMoreComplete}"
+            refreshComplete="@{viewModel.refreshComplete}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/default_padding_margin"
+            android:visibility="@{safeUnbox(viewModel.recyclerView) ? View.VISIBLE : View.GONE}"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+        <RelativeLayout
+            android:id="@+id/rl_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{safeUnbox(viewModel.emptyView) ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/label_no_results" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-</RelativeLayout>
+</layout>

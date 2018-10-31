@@ -1,96 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/default_padding_margin"
-    android:layout_marginEnd="@dimen/default_padding_margin">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v7.widget.CardView
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="movie"
+            type="com.michaelagustian.boxoffice.data.model.Movie" />
+
+        <variable
+            name="actionListener"
+            type="com.michaelagustian.boxoffice.features.movie.MovieItemActionListener" />
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_16sdp"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="@dimen/item_corner_radius"
-        app:cardElevation="@dimen/item_elevation"
-        app:cardUseCompatPadding="true">
+        android:layout_marginStart="@dimen/default_padding_margin"
+        android:layout_marginEnd="@dimen/default_padding_margin">
 
-        <android.support.constraint.ConstraintLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_42sdp"
-            android:orientation="vertical"
-            android:padding="@dimen/default_padding_margin">
+            android:layout_marginStart="@dimen/_16sdp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="@dimen/item_corner_radius"
+            app:cardElevation="@dimen/item_elevation"
+            app:cardUseCompatPadding="true">
 
-            <TextView
-                android:id="@+id/tv_movie_title"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:minLines="2"
-                android:textColor="@color/textPrimary"
-                android:textSize="@dimen/_13sdp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Rogue One - A Star War Story" />
+                android:layout_marginStart="@dimen/_42sdp"
+                android:orientation="vertical"
+                android:padding="@dimen/default_padding_margin">
 
-            <TextView
-                android:id="@+id/tv_movie_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorAccentAlternative"
-                android:textSize="@dimen/_11sdp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/tv_movie_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_movie_title"
-                tools:text="8.3" />
+                <TextView
+                    android:id="@+id/tv_movie_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:minLines="2"
+                    android:text="@{movie.title}"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Rogue One - A Star War Story" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4sdp"
-                android:text="@string/label_per_ten"
-                android:textColor="@color/textSecondary"
-                android:textSize="@dimen/_11sdp"
-                app:layout_constraintStart_toEndOf="@+id/tv_movie_rating"
-                app:layout_constraintTop_toTopOf="@+id/tv_movie_rating" />
+                <TextView
+                    android:id="@+id/tv_movie_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{movie.vote_average.toString()}"
+                    android:textColor="@color/colorAccentAlternative"
+                    android:textSize="@dimen/_11sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/tv_movie_title"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_movie_title"
+                    tools:text="8.3" />
 
-            <Button
-                android:id="@+id/btn_movie_detail"
-                android:layout_width="@dimen/_80sdp"
-                android:layout_height="@dimen/_28sdp"
-                android:layout_gravity="end"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:background="@drawable/bg_btn_detail"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:text="@string/btn_detail"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_movie_rating" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:text="@string/label_per_ten"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_movie_rating"
+                    app:layout_constraintTop_toTopOf="@+id/tv_movie_rating" />
 
-        </android.support.constraint.ConstraintLayout>
+                <Button
+                    android:id="@+id/btn_movie_detail"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@drawable/bg_btn_detail"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:onClick="@{() -> actionListener.onMovieDetailClicked(movie)}"
+                    android:text="@string/btn_detail"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_movie_rating" />
 
-    </android.support.v7.widget.CardView>
+            </android.support.constraint.ConstraintLayout>
 
-    <android.support.v7.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/item_corner_radius"
-        app:cardElevation="@dimen/item_elevation">
+        </android.support.v7.widget.CardView>
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            style="@style/ItemMoviePoster"
-            fresco:actualImageScaleType="centerCrop" />
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/item_corner_radius"
+            app:cardElevation="@dimen/item_elevation">
 
-    </android.support.v7.widget.CardView>
+            <com.facebook.drawee.view.SimpleDraweeView
+                style="@style/ItemMoviePoster"
+                imageUrl="@{movie.posterUrl}"
+                fresco:actualImageScaleType="centerCrop" />
 
-</RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+</layout>
