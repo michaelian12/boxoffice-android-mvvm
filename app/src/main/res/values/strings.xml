@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Box Office</string>
+
+    <string name="btn_detail">Detail</string>
+    <string name="label_no_results">No Results</string>
+    <string name="label_per_ten">/ 10</string>
+    <string name="label_overview">Overview</string>
+
+    <string name="label_data_empty">Data is empty</string>
+</resources>

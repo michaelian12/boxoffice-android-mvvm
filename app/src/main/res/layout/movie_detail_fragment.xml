@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                fresco:viewAspectRatio="2" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_overlay" />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_movie_detail"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+
+            <ProgressBar
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                shimmer:shimmer_duration="1200">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/default_padding_margin">
+
+                    <View style="@style/ItemMoviePoster" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/default_padding_margin"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/placeholder_text_height"
+                            android:background="@color/colorBackgroundPlaceholder" />
+
+                        <View
+                            android:layout_width="@dimen/placeholder_text_width"
+                            android:layout_height="@dimen/placeholder_text_height"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:background="@color/colorBackgroundPlaceholder" />
+
+                        <View
+                            android:layout_width="@dimen/placeholder_text_width"
+                            android:layout_height="@dimen/placeholder_text_height"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:background="@color/colorBackgroundPlaceholder" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/default_padding_margin">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="@dimen/item_corner_radius"
+                        app:cardElevation="@dimen/item_elevation"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            style="@style/ItemMoviePoster"
+                            fresco:actualImageScaleType="centerCrop" />
+
+                    </android.support.v7.widget.CardView>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/default_padding_margin"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/tv_movie_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minLines="2"
+                            android:textColor="@color/textPrimary"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold"
+                            tools:text="Rogue One - A Star War Story" />
+
+                        <TextView
+                            android:id="@+id/tv_movie_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_movie_title"
+                            android:textColor="@color/colorAccentAlternative"
+                            android:textSize="@dimen/_12sdp"
+                            android:textStyle="bold"
+                            tools:text="8.3" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_movie_title"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:layout_toEndOf="@+id/tv_movie_rating"
+                            android:text="@string/label_per_ten"
+                            android:textColor="@color/textSecondary"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_margin"
+                    android:layout_marginEnd="@dimen/default_padding_margin"
+                    android:text="@string/label_overview"
+                    android:textColor="@color/textPrimary"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_margin"
+                    android:layout_marginEnd="@dimen/default_padding_margin"
+                    android:layout_marginBottom="@dimen/default_padding_margin"
+                    android:textColor="@color/textSecondary"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rhoncus arcu vitae massa molestie dignissim. Morbi vitae enim sit amet orci euismod volutpat. Aenean sagittis vulputate lectus, sit amet finibus est mollis vel. Suspendisse pulvinar sit amet massa in cursus. Ut vel tempor ipsum. Quisque ut enim id eros egestas tristique vitae et neque. Phasellus egestas, massa vel interdum ornare, orci ante aliquam odio, id sollicitudin augue felis sed tortor. Maecenas eget mollis ligula." />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

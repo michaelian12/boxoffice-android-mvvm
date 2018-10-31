@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/default_padding_margin"
+    android:layout_marginEnd="@dimen/default_padding_margin">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/item_corner_radius"
+        app:cardElevation="@dimen/item_elevation"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_42sdp"
+            android:orientation="vertical"
+            android:padding="@dimen/default_padding_margin">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/placeholder_text_height"
+                android:background="@color/colorBackgroundPlaceholder" />
+
+            <View
+                android:layout_width="@dimen/placeholder_text_width"
+                android:layout_height="@dimen/placeholder_text_height"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/colorBackgroundPlaceholder" />
+
+            <View
+                android:layout_width="@dimen/placeholder_text_width"
+                android:layout_height="@dimen/placeholder_text_height"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginBottom="@dimen/_36sdp"
+                android:background="@color/colorBackgroundPlaceholder" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/item_corner_radius"
+        app:cardElevation="@dimen/item_elevation"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View style="@style/ItemMoviePoster" />
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>
