@@ -41,10 +41,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
     private fun setupViewModel() {
         viewModel = MovieDetailViewModel(application, Injection.provideMovieRepository(this))
-//        viewModel = obtainViewModel()
     }
-
-//    fun obtainViewModel(): MovieDetailViewModel = obtainViewModel(MovieDetailViewModel::class.java)
 
     companion object {
         const val EXTRA_MOVIE_ID = "MOVIE_ID"

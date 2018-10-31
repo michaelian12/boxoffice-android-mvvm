@@ -42,13 +42,5 @@ class MovieActivity : AppCompatActivity(), MovieItemNavigator {
                 openMovieDetail(it?.id!!)
             })
         }
-
-//        viewModel = obtainViewModel().apply {
-//            openMovieDetailEvent.observe(this@MovieActivity, Observer {
-//                openMovieDetail(it?.id!!)
-//            })
-//        }
     }
-
-//    fun obtainViewModel(): MovieViewModel = obtainViewModel(MovieViewModel::class.java)
 }
